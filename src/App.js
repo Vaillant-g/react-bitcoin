@@ -2,6 +2,7 @@ import './App.css';
 import React, { Component } from 'react';
 import DatePickers from './Components/DatePickers';
 import Display from './Components/Display';
+import { Row, Col, Container } from 'react-bootstrap';
 
 class App extends Component {
   constructor(props) {
@@ -32,17 +33,31 @@ class App extends Component {
   render() {
     return (
       <>
-        <h1>React-Bitcoin</h1>
-        <p>Powered by <a href="https://www.coindesk.com/coindesk-api">CoinDesk</a></p>
-        <DatePickers changeDateStart={this.setStartDate} changeDateEnd={this.setEndDate}></DatePickers>
-        <Display
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}>
-
-          </Display>
+        <Container>
+          <Row>
+            <Col>
+              <h1>React-Bitcoin</h1>
+              <p>Powered by <a href="https://www.coindesk.com/coindesk-api">CoinDesk</a></p>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <DatePickers changeDateStart={this.setStartDate} changeDateEnd={this.setEndDate} startDate={this.state.startDate} endDate={this.state.endDate} ></DatePickers>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Display
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}>
+              </Display>
+            </Col>
+          </Row>
+        </Container>
       </>
     )
   }
 }
 
 export default App;
+

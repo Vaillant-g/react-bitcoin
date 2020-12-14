@@ -1,4 +1,5 @@
 import React from 'react';
+import { InputGroup, FormControl } from 'react-bootstrap';
 
 export default function DatePickers(props) {
     const onChangeStart = (e) => {
@@ -11,10 +12,19 @@ export default function DatePickers(props) {
 
     return (
         <>
-            <label>Start Date</label>
-            <input value onChange={onChangeStart} type='date'></input>
-            <label>End Date</label>
-            <input value onChange={onChangeEnd} type='date'></input>
+            <InputGroup className="mb-3">
+                <InputGroup.Prepend>
+                    <InputGroup.Text id="inputGroup-sizing-default">Start Date</InputGroup.Text>
+                </InputGroup.Prepend>
+                <input value onChange={onChangeStart} type='date' className="form-control" value={props.startDate}></input>
+            </InputGroup>
+
+            <InputGroup className="mb-3">
+                <InputGroup.Prepend>
+                    <InputGroup.Text id="inputGroup-sizing-default">End Date</InputGroup.Text>
+                </InputGroup.Prepend>
+                <input value onChange={onChangeEnd} type='date' className="form-control" value={props.endDate}></input>
+            </InputGroup>
         </>
     )
 }
