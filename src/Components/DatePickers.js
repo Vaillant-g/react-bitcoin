@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputGroup, FormControl } from 'react-bootstrap';
+import { InputGroup, Row, Col, Container } from 'react-bootstrap';
 
 export default function DatePickers(props) {
     const onChangeStart = (e) => {
@@ -12,19 +12,24 @@ export default function DatePickers(props) {
 
     return (
         <>
-            <InputGroup className="mb-3">
-                <InputGroup.Prepend>
-                    <InputGroup.Text id="inputGroup-sizing-default">Start Date</InputGroup.Text>
-                </InputGroup.Prepend>
-                <input value onChange={onChangeStart} type='date' className="form-control" value={props.startDate}></input>
-            </InputGroup>
-
-            <InputGroup className="mb-3">
-                <InputGroup.Prepend>
-                    <InputGroup.Text id="inputGroup-sizing-default">End Date</InputGroup.Text>
-                </InputGroup.Prepend>
-                <input value onChange={onChangeEnd} type='date' className="form-control" value={props.endDate}></input>
-            </InputGroup>
+            <Row>
+                <Col>
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="inputGroup-sizing-default">Start Date</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <input value onChange={onChangeStart} type='date' className="form-control" value={props.startDate}></input>
+                    </InputGroup>
+                </Col>
+                <Col>
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="inputGroup-sizing-default">End Date</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <input value onChange={onChangeEnd} type='date' className="form-control" value={props.endDate}></input>
+                    </InputGroup>
+                </Col>
+            </Row>
         </>
     )
 }
