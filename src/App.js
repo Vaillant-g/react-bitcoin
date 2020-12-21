@@ -1,100 +1,145 @@
-import './App.css';
-import React, { Component } from 'react';
-import DatePickers from './Components/DatePickers';
-import Display from './Components/Display';
-import { Row, Col, Container } from 'react-bootstrap';
-import CurrentBitcoinValue from './Components/CurrentBitcoinValue'
-import axios from 'axios';
-import moment from 'moment'
-
+import "./App.css";
+import React, { Component } from "react";
+import DatePickers from "./Components/DatePickers";
+import Display from "./Components/Display";
+import DisplayBetween from "./Components/DisplayBetween";
+import { Row, Col, Container } from "react-bootstrap";
+import CurrentBitcoinValue from "./Components/CurrentBitcoinValue";
+import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      monthData: null,
+      betweenData: null,
       currentValue: 0,
-      startDate: '2020-01-01',
-      endDate: '2020-12-18'
+      startDate: "2020-01-01",
+      endDate: "2020-12-18",
     };
   }
 
   componentDidMount() {
-    axios.get('https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2013-09-05')
-      .then(function (response) {
-        // console.log(response);
+    this.loadMonthData();
+    this.loadCurrentBitcoinPrice();
+    this.loadBetweenData();
+  }
+
+  loadMonthData = () => {
+    axios
+      .get("https://api.coindesk.com/v1/bpi/historical/close.json")
+      .then((response) => {
+        //        console.log(Object.keys(response.data.bpi));
+        this.setState({ monthData: response.data.bpi });
       })
       .catch(function (error) {
         console.log(error);
       })
-      .then(function () {
-      });
-    this.loadCurrentBitcoinPrice();
-
-
-  }
+      .then(function () {});
+  };
 
   loadCurrentBitcoinPrice = () => {
-    axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+    axios
+      .get("https://api.coindesk.com/v1/bpi/currentprice.json")
       .then((response) => {
-        console.log(response.data.bpi.EUR.rate);
-        this.setState({ currentValue: response.data.bpi })
+        //        console.log(response.data.bpi.EUR.rate);
+        this.setState({ currentValue: response.data.bpi });
       })
       .catch(function (error) {
         console.log(error);
-      })
-  }
+      });
+  };
 
   setStartDate = (newStartDate) => {
-    console.log(newStartDate)
+    console.log(newStartDate);
     this.setState({ startDate: newStartDate });
-    this.makeChartData();
-  }
+    this.loadBetweenData();
+  };
 
   setEndDate = (newEndDate) => {
-    console.log(newEndDate)
+    console.log(newEndDate);
     this.setState({ endDate: newEndDate });
-    this.makeChartData();
-  }
+    this.loadBetweenData();
+  };
 
-  makeChartData = () => {
-    fetch('https://api.coindesk.com/v1/bpi/historical/close.json?start=' + this.state.startDate + '&end=' + this.state.endDate)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
+  loadBetweenData = () => {
+    axios
+      .get(
+        "https://api.coindesk.com/v1/bpi/historical/close.json?start=" +
+          this.state.startDate +
+          "&end=" +
+          this.state.endDate
+      )
+      .then((response) => {
+        console.log(response);
+        this.setState({ betweenData: response.data.bpi });
+      })
+      .catch(function (error) {
+        console.log(error);
       });
-  }
+  };
 
   render() {
     return (
       <>
-        <Container>
+        <Container className="App">
           <Row>
             <Col>
               <h1>React-Bitcoin</h1>
-              <p>Powered by <a href="https://www.coindesk.com/coindesk-api">CoinDesk</a></p>
             </Col>
           </Row>
           <Row>
             <Col>
-              <CurrentBitcoinValue currentValue={this.state.currentValue} reloadPrice={this.loadCurrentBitcoinPrice}></CurrentBitcoinValue>
+              <CurrentBitcoinValue
+                currentValue={this.state.currentValue}
+                reloadPrice={this.loadCurrentBitcoinPrice}
+              ></CurrentBitcoinValue>
             </Col>
           </Row>
           <Row>
             <Col>
-              <DatePickers changeDateStart={this.setStartDate} changeDateEnd={this.setEndDate} startDate={this.state.startDate} endDate={this.state.endDate} ></DatePickers>
+              <Display data={this.state.monthData}></Display>
             </Col>
           </Row>
           <Row>
             <Col>
-              <Display
+              <DatePickers
+                changeDateStart={this.setStartDate}
+                changeDateEnd={this.setEndDate}
                 startDate={this.state.startDate}
-                endDate={this.state.endDate}>
-              </Display>
+                endDate={this.state.endDate}
+              ></DatePickers>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <DisplayBetween
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+                data={this.state.betweenData}
+              ></DisplayBetween>
             </Col>
           </Row>
         </Container>
+        <footer className="bg-light text-center text-lg-start fixed-bottom">
+          <div className="text-center p-3">
+            Gautier Vaillant 2020{" "}
+            <a href="https://github.com/Vaillant-g">
+              <FontAwesomeIcon icon={faGithub} />
+            </a>
+            <span>
+              {" | "}
+              {/* https://www.coindesk.com/coindesk-api */}
+              Powered by
+              <a href="https://www.coindesk.com/price/bitcoin"> CoinDesk</a>'s
+              API
+            </span>
+          </div>
+        </footer>
       </>
-    )
+    );
   }
 }
 

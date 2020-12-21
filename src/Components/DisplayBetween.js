@@ -1,7 +1,7 @@
 import React from "react";
 import BitcoinLineChart from "./BitcoinLineChart";
 
-export default function Display(props) {
+export default function DisplayBetween(props) {
   if (!props.data) return null;
   const data = props.data;
 
@@ -10,9 +10,14 @@ export default function Display(props) {
     value: data[key],
   }));
 
+  console.log(newData);
+
   return (
     <>
-    <h2>Evolution of Bitcoin's price over the past month</h2>
+      <h2>
+        Evolution of Bitcoin's price between {props.startDate} and{" "}
+        {props.endDate}
+      </h2>
       <div className="shadow-lg p-3 mb-5 bg-white rounded contentdiv">
         <BitcoinLineChart data={newData}></BitcoinLineChart>
       </div>

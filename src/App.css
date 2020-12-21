@@ -1,5 +1,32 @@
+/* general */
+body {
+  background-color: #F5F5F7;
+}
+
+a {
+  color: #B8B6E8 !important;
+}
+
+
+/* content */
+.contentdiv {
+  background-color: #ffff;
+}
 .App {
-  text-align: center;
+  text-align: left;
+  margin-bottom: 100px;
+}
+
+h1, h2 {
+  color: #B8B6E8;
+  font-family: 'Catamaran', system-ui;
+  font-size: 62px;
+  font-weight: 800;
+  line-height: 72px;
+  margin: 0 0 24px;
+  /* text-align: center; */
+  /* text-transform: uppercase; */
+  text-shadow: 1px 1px 2px #0AAA;
 }
 
 .App-logo {
@@ -28,16 +55,30 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .CurrentBitcoinValue button {
   margin-top: 25px;
 
+}
+
+hr.separator {
+  margin: 0, 5px, 0, 0;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.reloadButton {
+  margin: 0 !important;
+  text-align: center;
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+.alignCenter, .reloadDiv {
+  text-align: center;
+}
+
+.alignRight {
+  text-align: right;
 }
