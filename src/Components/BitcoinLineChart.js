@@ -22,7 +22,7 @@ class BitcoinLineChart extends React.Component {
     return (
       <>
         <LineChart
-          width={1000}
+          width={1050}
           height={300}
           data={this.props.data}
           margin={{ top: 5, right: 5, bottom: 5, left: 0 }}
