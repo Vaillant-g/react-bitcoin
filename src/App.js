@@ -31,7 +31,6 @@ class App extends Component {
     axios
       .get("https://api.coindesk.com/v1/bpi/historical/close.json")
       .then((response) => {
-        //        console.log(Object.keys(response.data.bpi));
         this.setState({ monthData: response.data.bpi });
       })
       .catch(function (error) {
@@ -44,22 +43,18 @@ class App extends Component {
     axios
       .get("https://api.coindesk.com/v1/bpi/currentprice.json")
       .then((response) => {
-        //        console.log(response.data.bpi.EUR.rate);
         this.setState({ currentValue: response.data.bpi });
       })
       .catch(function (error) {
-        console.log(error);
       });
   };
 
   setStartDate = (newStartDate) => {
-    console.log(newStartDate);
     this.setState({ startDate: newStartDate });
     this.loadBetweenData();
   };
 
   setEndDate = (newEndDate) => {
-    console.log(newEndDate);
     this.setState({ endDate: newEndDate });
     this.loadBetweenData();
   };
@@ -73,7 +68,6 @@ class App extends Component {
           this.state.endDate
       )
       .then((response) => {
-        console.log(response);
         this.setState({ betweenData: response.data.bpi });
       })
       .catch(function (error) {

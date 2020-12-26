@@ -10,8 +10,6 @@ export default function DisplayBetween(props) {
     value: data[key],
   }));
 
-  console.log(newData);
-
   return (
     <>
       <h2>
