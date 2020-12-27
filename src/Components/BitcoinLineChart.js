@@ -6,6 +6,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  ResponsiveContainer,
 } from "recharts";
 
 class BitcoinLineChart extends React.Component {
@@ -21,18 +22,20 @@ class BitcoinLineChart extends React.Component {
   render() {
     return (
       <>
-        <LineChart
-          width={1050}
-          height={300}
-          data={this.props.data}
-          margin={{ top: 5, right: 5, bottom: 5, left: 0 }}
-        >
-          <Line type="natural" dataKey="value" stroke="#8884d8" dot={false}/>
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <XAxis dataKey="date" />
-          <YAxis dataKey="value" />
-          <Tooltip />
-        </LineChart>
+        <ResponsiveContainer width="95%" height={400}>
+          <LineChart
+            width={1050}
+            height={300}
+            data={this.props.data}
+            margin={{ top: 5, right: 5, bottom: 5, left: 0 }}
+          >
+            <Line type="natural" dataKey="value" stroke="#8884d8" dot={false} />
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <XAxis dataKey="date" />
+            <YAxis dataKey="value" />
+            <Tooltip />
+          </LineChart>
+        </ResponsiveContainer>
       </>
     );
   }

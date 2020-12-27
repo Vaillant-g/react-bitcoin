@@ -17,6 +17,7 @@ export default function DisplayBetween(props) {
         {props.endDate}
       </h2>
       <div className="shadow-lg p-3 mb-5 bg-white rounded contentdiv">
+      
         <BitcoinLineChart data={newData}></BitcoinLineChart>
       </div>
     </>

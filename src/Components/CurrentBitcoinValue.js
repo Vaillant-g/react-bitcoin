@@ -6,12 +6,23 @@ import {
   faPoundSign,
   faRedoAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
+import CurrentDate from "./CurrentDate";
+import moment from "moment";
 
 export default function CurrentBitcoinValue(props) {
   const UsdValue = props.currentValue ? props.currentValue.USD.rate : "";
   const EurValue = props.currentValue ? props.currentValue.EUR.rate : "";
   const GbpValue = props.currentValue ? props.currentValue.GBP.rate : "";
+  var currentDate = moment().format("LLL");
+
+  const reload = () => {
+    props.reloadPrice();
+
+    const event = new Date();
+    console.log(event.toLocaleTimeString("en-US"));
+    currentDate = moment().format("LLL");
+  };
 
   return (
     <div className="CurrentBitcoinValue ">
@@ -31,25 +42,15 @@ export default function CurrentBitcoinValue(props) {
             <span> {GbpValue}</span>
           </Col>
         </Row>
+        <hr className="separator" />
         <Row>
           <Col>
-            <hr className="separator" />
-            {/* <Button
-              variant=""
-              className="reloadButton"
-              onClick={props.reloadPrice}
-            >
+            <CurrentDate currentDate={currentDate.toString()}></CurrentDate>
+          </Col>
+          <Col className="alignRight">
+            <span className="reloadButton" onClick={reload}>
               <FontAwesomeIcon icon={faRedoAlt} /> <span> Reload</span>
-            </Button> */}
-            <div className="reloadDiv">
-              <Button
-                variant=""
-                className="reloadButton"
-                onClick={props.reloadPrice}
-              >
-                <FontAwesomeIcon icon={faRedoAlt} /> <span> Reload</span>
-              </Button>
-            </div>
+            </span>
           </Col>
         </Row>
       </div>
