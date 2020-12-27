@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputGroup, Row, Col, Container } from 'react-bootstrap';
+import { InputGroup, Row, Col } from 'react-bootstrap';
 
 export default function DatePickers(props) {
     const onChangeStart = (e) => {
@@ -18,7 +18,7 @@ export default function DatePickers(props) {
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroup-sizing-default">Start Date</InputGroup.Text>
                         </InputGroup.Prepend>
-                        <input value onChange={onChangeStart} type='date' className="form-control" value={props.startDate}></input>
+                        <input onChange={onChangeStart} type='date' className="form-control" value={props.startDate}></input>
                     </InputGroup>
                 </Col>
                 <Col>
@@ -26,7 +26,7 @@ export default function DatePickers(props) {
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroup-sizing-default">End Date</InputGroup.Text>
                         </InputGroup.Prepend>
-                        <input value onChange={onChangeEnd} type='date' className="form-control" value={props.endDate}></input>
+                        <input onChange={onChangeEnd} type='date' className="form-control" value={props.endDate}></input>
                     </InputGroup>
                 </Col>
             </Row>
