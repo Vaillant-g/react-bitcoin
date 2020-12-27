@@ -16,7 +16,7 @@ class App extends Component {
       monthData: null,
       betweenData: null,
       currentValue: 0,
-      startDate: "2020-01-01",
+      startDate: "2020-09-10",
       endDate: "2020-12-18",
     };
   }

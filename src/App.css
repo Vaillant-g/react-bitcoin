@@ -20,9 +20,9 @@ h1,
 h2 {
   color: #b8b6e8;
   font-family: "Catamaran", system-ui;
-  font-size: 62px;
-  font-weight: 800;
-  line-height: 72px;
+  /* font-size: 62px; */
+  /* font-weight: 800; */
+  /* line-height: 72px; */
   margin: 0 0 24px;
   /* text-align: center; */
   /* text-transform: uppercase; */
@@ -80,4 +80,47 @@ hr.separator {
 
 .alignRight {
   text-align: right;
+}
+
+/* RESPONSIVE */
+
+@media only screen and (min-device-width: 200px) and (max-device-width: 768px) {
+  .col h1 {
+    font-size: 35px;
+  }
+
+  .col h2 {
+    font-size: 20px;
+  }
+
+  .alignLeft {
+    text-align: left;
+  }
+
+  .alignCenter,
+  .reloadDiv {
+    text-align: left;
+  }
+
+  .alignRight {
+    text-align: left;
+  }
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 991px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 1.7rem;
+  }
 }

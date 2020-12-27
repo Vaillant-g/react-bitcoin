@@ -20,9 +20,11 @@ class BitcoinLineChart extends React.Component {
   componentDidMount() {}
 
   render() {
+    const height = this.props.height != null ? this.props.height : 300;
+
     return (
       <>
-        <ResponsiveContainer width="95%" height={400}>
+        <ResponsiveContainer width="95%" height={height}>
           <LineChart
             width={1050}
             height={300}

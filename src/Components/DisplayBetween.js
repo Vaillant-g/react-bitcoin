@@ -13,11 +13,9 @@ export default function DisplayBetween(props) {
   return (
     <>
       <h2>
-        Evolution of Bitcoin's price between {props.startDate} and{" "}
-        {props.endDate}
+        Bitcoin's price between {props.startDate} and {props.endDate}
       </h2>
       <div className="shadow-lg p-3 mb-5 bg-white rounded contentdiv">
-      
         <BitcoinLineChart data={newData}></BitcoinLineChart>
       </div>
     </>

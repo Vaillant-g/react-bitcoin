@@ -12,9 +12,9 @@ export default function Display(props) {
 
   return (
     <>
-    <h2>Evolution of Bitcoin's price over the past month</h2>
+    <h2>Bitcoin's price this month</h2>
       <div className="shadow-lg p-3 mb-5 bg-white rounded contentdiv">
-        <BitcoinLineChart data={newData}></BitcoinLineChart>
+        <BitcoinLineChart data={newData} height={200}></BitcoinLineChart>
       </div>
     </>
   );

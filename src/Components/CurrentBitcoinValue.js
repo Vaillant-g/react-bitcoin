@@ -29,15 +29,15 @@ export default function CurrentBitcoinValue(props) {
       <h2>Current Bitcoin price</h2>
       <div className="shadow-lg p-3 mb-5 bg-white rounded contentdiv">
         <Row>
-          <Col className="alignLeft">
+          <Col className="alignLeft" xs={12}>
             <FontAwesomeIcon icon={faEuroSign} />
             <span> {EurValue}</span>
           </Col>
-          <Col className="alignCenter">
+          <Col className="alignCenter" xs={12}>
             <FontAwesomeIcon icon={faDollarSign} />
             <span> {UsdValue}</span>
           </Col>
-          <Col className="alignRight">
+          <Col className="alignRight" xs={12}>
             <FontAwesomeIcon icon={faPoundSign} />
             <span> {GbpValue}</span>
           </Col>
